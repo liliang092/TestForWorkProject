@@ -38,20 +38,22 @@
     return objc_getAssociatedObject(self, @selector(custonNavView));
 }
 
-//-(void)addCustomNavBar:(NSString *)title withLeftBtn:(NSString *)leftImage withRightBtn:(NSString *)rightImage withLeftLabel:(NSString *)leftLabel withRightLabel:(NSString *)rightLabel
-//{
-//    if (self.custonNavView == nil) {
-//        self.custonNavView = [[LLCustomNavBarView alloc]initWithFrame:CGRectMake(0, 0, self.baseView.frame.size.width, NavigationBarHeight) withBgImage:nil withTitle:title withLeftBtn:leftImage withRightBtn:rightImage withLeftLabel:leftLabel withRightLabel:rightLabel];
-//        [self.baseView addSubview:self.custonNavView];
-//        self.custonNavView.delegate = self;
-//    }
-//    else
-//    {
-//        [self.custonNavView updateTitle:title];
-//        [self.custonNavView updateLeftBtn:leftLabel withImage:leftImage];
-//        [self.custonNavView updateLeftBtn:rightLabel withImage:rightImage];
-//    }
-//}
+-(void)addCustomNavBar:(NSString *)title withLeftBtn:(NSString *)leftImage withRightBtn:(NSString *)rightImage withLeftLabel:(NSString *)leftLabel withRightLabel:(NSString *)rightLabel
+{
+    self.navigationController.navigationBar.hidden = YES;
+    if (self.custonNavView == nil) {
+        self.custonNavView = [[LLCustomNavBarView alloc]initWithFrame:CGRectMake(0, 0, self.baseView.frame.size.width, NavigationBarHeight) withBgImage:nil withTitle:title withLeftBtn:leftImage withRightBtn:rightImage withLeftLabel:leftLabel withRightLabel:rightLabel];
+        [self.baseView addSubview:self.custonNavView];
+        self.custonNavView.delegate = self;
+    }
+    else
+    {
+        [self.custonNavView updateTitle:title];
+        [self.custonNavView updateLeftBtn:leftLabel withImage:leftImage];
+        [self.custonNavView updateLeftBtn:rightLabel withImage:rightImage];
+    }
+    [self.view addSubview:self.custonNavView];
+}
 -(void)addTapToBaseView
 {
     if (self.baseView!= nil) {

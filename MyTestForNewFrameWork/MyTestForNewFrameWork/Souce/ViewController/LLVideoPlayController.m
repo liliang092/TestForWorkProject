@@ -10,7 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 @interface LLVideoPlayController ()
 
-@property(nonatomic,strong)MPMoviePlayerController *player;
+//@property(nonatomic,strong)MPMoviePlayerController *player;
 @property(nonatomic,copy)NSString *url;
 
 @end
@@ -27,6 +27,45 @@
     if (_player == nil) {
         NSURL *url = [NSURL URLWithString:self.url];
         _player = [[MPMoviePlayerController alloc] init];
+    }
+}
+-(void)createAvPlayer
+{
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    CGRect playFrame = CGRectMake(0, 0, self.view.layer.bounds.size.height, self.view.layer.bounds.size.width);
+    
+    AVURLAsset *asset = [AVURLAsset assetWithURL:_url];
+    
+    Float64 duration = CMTimeGetSeconds(asset.duration);
+    _totalMovieDuration =duration;
+    AVPlayerItem *palyItem = [AVPlayerItem playerItemWithAsset:asset];
+    _player = [[AVPlayer alloc]initWithPlayerItem:palyItem];
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
+    playerLayer.frame = playFrame;
+    playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+    [self.view.layer addSublayer:playerLayer];
+    
+}
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    CGPoint poin = [[touches anyObject] locationInView:self.view];
+    if (_isShowView) {
+        if ((poin.y > CGRectGetMinY(self.topView.frame) && poin.y <CGRectGetMaxY(self.topView.frame))||(poin.y <CGRectGetMaxY(self.bottomView.frame) &&poin.y >CGRectGetMinY(self.bottomView.frame))) {
+            return ;
+        }
+        _isShowView =NO;
+        [UIView animateWithDuration:0.5 animations:^{
+            _topView.alpha =0;
+            _bottomView.alpha = 0;
+        }];
+    }else{
+        _isShowView = YES;
+        [UIView animateWithDuration:0.5 animations:^{
+            _topView.alpha = 1;
+            _bottomView.alpha =1;
+        }];
+    
     }
 }
 - (void)didReceiveMemoryWarning {

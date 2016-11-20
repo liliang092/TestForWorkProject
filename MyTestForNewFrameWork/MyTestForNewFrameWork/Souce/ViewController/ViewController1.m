@@ -21,6 +21,7 @@
 #import "testView2.h"
 #import "MBHudExtention.h"
 #import "TopTenBang.h"
+#import "TestForTimerViewController.h"
 @interface ViewController1 ()<UICollectionViewDelegate>
 @property(nonatomic,strong)UIButton *itemButton;
 @property(nonatomic,strong)TopTenBang *topTenView;
@@ -93,105 +94,8 @@
 }
 -(void)myClickAction
 {
-    [MBHudExtention show];
-//    [MBHudExtention showError:@"出错了"];
-    [self performSelector:@selector(hiddenAction) withObject:nil afterDelay:2.0];
-//    [MBHudExtention showError:@"出粗了" andWithController:self];
-//    _moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [_moreButton setHidden:NO];
-//    [_moreButton setTitleColor:[UIColor colorWithRed:159 green:159 blue:159 alpha:1] forState:UIControlStateNormal];
-//    _moreButton.titleLabel.font = [UIFont systemFontOfSize:14];
-//    _moreButton.titleLabel.textColor =[UIColor colorWithRed:159 green:159 blue:159 alpha:1];
-//    //    [_moreButton setBackgroundColor:[UIColor blueColor]];
-//    _moreButton.frame = CGRectMake(ScreenWidth - ScreenWidth/5.8 -10 , 0, ScreenWidth /5.5, 20);
-//    [_moreButton setTitle:NSLocalizedString(@"更多", nil) forState:UIControlStateNormal];
-//    _moreButton.titleLabel.adjustsFontSizeToFitWidth = YES;
-//    
-//    [_moreButton setImage:[UIImage imageNamed:@"iv_pindao_more_normal"] forState:UIControlStateNormal];
-//    [_moreButton setImage:[UIImage imageNamed:@"iv_pindao_more_pressed"] forState:UIControlStateHighlighted];
-//    CGSize imageSize = _moreButton.imageView.image.size;
-//    CGRect frame =_moreButton.frame;
-//    frame.size = imageSize;
-//    _moreButton.frame = frame;
-//    
-//    [self.view addSubview:self.moreButton];
-////    LLShowNeesLogInView *logView = [[LLShowNeesLogInView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-//    logView.myBlock = ^(NSInteger tag){
-//        switch (tag) {
-//            case 0:
-//            {
-//                NSLog(@"QQ");
-//            }
-//                break;
-//            case 1:
-//            {
-//                NSLog(@"微信");
-//            }
-//                break;
-//            case 2:
-//            {
-//                NSLog(@"微博");
-//            }
-//                break;
-//            case 3:
-//            {
-//                NSLog(@"手机号");
-//            }
-//                break;
-//                
-//            default:
-//                break;
-//        }
-//    };
-//    [logView showInView];
-
-//    [DLHttpHelper GetData:DiscoverURL withParameters:nil success:^(id responseObject) {
-//        LLBaseDataModel *model = [[LLBaseDataModel alloc]init];
-//        if ([responseObject isKindOfClass:NSClassFromString(@"NSDictionary")]) {
-//            [model parseDataDic:responseObject];
-//        }
-//        
-//        [model parseData:responseObject];
-//        NSLog(@"ssss = %@",responseObject);
-//    } failure:^(NSString *error) {
-//        NSLog(@"错误信息");
-//    }];
-    LLShareView *share = [[LLShareView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    [share addIconItem:@"微信朋友圈" withIcon:@"iv_wx_friend_normal"];
-    [share addIconItem:@"微信好友" withIcon:@"iv_wx_normal"];
-    [share addIconItem:@"微博分享" withIcon:@"iv_weibo_normal"];
-    [share addIconItem:@"QQ好友" withIcon:@"iv_qq_normal"];
-    [share addIconItem:@"QQ空间" withIcon:@"iv_qqzone_normal-"];
-    [share updateData];
-    share.block = ^(NSInteger tag)
-    {
-        ;
-        [self clicAstest];
-        switch (tag) {
-            case 0:
-            {
-                NSLog(@"取消分享");
-            }
-                break;
-            case 1:
-            {
-                NSLog(@"微信分享");
-            }
-            case 2:
-            {
-                NSLog(@"微博分享");
-            }
-            default:
-                break;
-        }
-    };
-  
-//    [share showInView];
-//    viewController4 *view = [[viewController4 alloc]init];
-////    [self.tabBarController setHidesBottomBarWhenPushed:YES];
-//    [APPDELEGATE.viewContoller.myTabViewController showOrHideCustomTabaBar:NO];
-//
-//    [self.navigationController pushViewController:view animated:YES];
+    TestForTimerViewController *viewContorll = [[TestForTimerViewController alloc]init];
+    [self.navigationController pushViewController:viewContorll animated:YES];
 }
 -(void)clicAstest{
     NSLog(@"ssss ");

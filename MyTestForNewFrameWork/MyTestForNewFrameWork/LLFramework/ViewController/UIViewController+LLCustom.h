@@ -14,11 +14,11 @@
 @property(nonatomic,strong)UIView *baseView;
 @property(nonatomic,strong)LLCustomNavBarView *custonNavView;
 
-//-(void)addCustomNavBar:(NSString*)title
-//           withLeftBtn:(NSString*)leftImage
-//          withRightBtn:(NSString*)rightImage
-//         withLeftLabel:(NSString*)leftLabel
-//        withRightLabel:(NSString*)rightLabel;
+-(void)addCustomNavBar:(NSString*)title
+           withLeftBtn:(NSString*)leftImage
+          withRightBtn:(NSString*)rightImage
+         withLeftLabel:(NSString*)leftLabel
+        withRightLabel:(NSString*)rightLabel;
 
 -(void)addTapToBaseView;
 -(void)baseSingleTap;
